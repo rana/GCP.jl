@@ -3,240 +3,59 @@ using Dates
 using LazyJSON
 using ..GCP
 const baseUrl = "https://www.googleapis.com/bigquery/v2/"
-mutable struct BigQueryModelTraining <: GCP.Abstract
-    currentIteration::Union{Nothing, Int32}
-    expectedTotalIterations::Union{Nothing, Int64}
-    BigQueryModelTraining() = begin
-            new()
-        end
-end
-mutable struct BigtableColumn <: GCP.Abstract
-    encoding::String
-    fieldName::String
-    onlyReadLatest::Union{Nothing, Bool}
-    qualifierEncoded::Union{Nothing, UInt8}
-    qualifierString::String
-    type_::String
-    BigtableColumn() = begin
-            new()
-        end
-end
-mutable struct BqmlIterationResult <: GCP.Abstract
-    durationMs::Union{Nothing, Int64}
-    evalLoss::Union{Nothing, Float64}
-    index::Union{Nothing, Int32}
-    learnRate::Union{Nothing, Float64}
-    trainingLoss::Union{Nothing, Float64}
-    BqmlIterationResult() = begin
-            new()
-        end
-end
-mutable struct Clustering <: GCP.Abstract
-    fields::Vector{String}
-    Clustering() = begin
-            new()
-        end
-end
-mutable struct CsvOptions <: GCP.Abstract
-    allowJaggedRows::Union{Nothing, Bool}
-    allowQuotedNewlines::Union{Nothing, Bool}
-    encoding::String
-    fieldDelimiter::String
-    quote_::String
-    skipLeadingRows::Union{Nothing, Int64}
-    CsvOptions() = begin
-            new()
-        end
-end
-mutable struct DatasetReference <: GCP.Abstract
-    datasetId::String
-    projectId::String
-    DatasetReference() = begin
-            new()
-        end
-end
-mutable struct DestinationTableProperties <: GCP.Abstract
-    description::String
-    friendlyName::String
-    DestinationTableProperties() = begin
-            new()
-        end
-end
-mutable struct EncryptionConfiguration <: GCP.Abstract
-    kmsKeyName::String
-    EncryptionConfiguration() = begin
-            new()
-        end
-end
-mutable struct ErrorProto <: GCP.Abstract
-    debugInfo::String
-    location::String
-    message::String
-    reason::String
-    ErrorProto() = begin
-            new()
-        end
-end
-mutable struct ExplainQueryStep <: GCP.Abstract
-    kind::String
-    substeps::Vector{String}
-    ExplainQueryStep() = begin
-            new()
-        end
-end
 mutable struct GetServiceAccountResponse <: GCP.Abstract
     email::String
     kind::String
-    GetServiceAccountResponse() = begin
-            new()
-        end
-end
-mutable struct GoogleSheetsOptions <: GCP.Abstract
-    range::String
-    skipLeadingRows::Union{Nothing, Int64}
-    GoogleSheetsOptions() = begin
-            new()
-        end
-end
-mutable struct JobReference <: GCP.Abstract
-    jobId::String
-    location::String
-    projectId::String
-    JobReference() = begin
-            new()
-        end
-end
-mutable struct JobStatistics3 <: GCP.Abstract
-    badRecords::Union{Nothing, Int64}
-    inputFileBytes::Union{Nothing, Int64}
-    inputFiles::Union{Nothing, Int64}
-    outputBytes::Union{Nothing, Int64}
-    outputRows::Union{Nothing, Int64}
-    JobStatistics3() = begin
-            new()
-        end
-end
-mutable struct JobStatistics4 <: GCP.Abstract
-    destinationUriFileCounts::Vector{Int64}
-    inputBytes::Union{Nothing, Int64}
-    JobStatistics4() = begin
-            new()
-        end
+    function GetServiceAccountResponse()
+        new()
+    end
 end
 mutable struct JsonObject <: GCP.Abstract
-    JsonObject() = begin
-            new()
-        end
+    function JsonObject()
+        new()
+    end
 end
 mutable struct JsonValue <: GCP.Abstract
-    JsonValue() = begin
-            new()
-        end
-end
-mutable struct MaterializedViewDefinition <: GCP.Abstract
-    lastRefreshTime::Union{Nothing, Int64}
-    query::String
-    MaterializedViewDefinition() = begin
-            new()
-        end
+    function JsonValue()
+        new()
+    end
 end
 mutable struct ProjectList <: GCP.Abstract
     etag::String
     kind::String
     nextPageToken::String
     totalItems::Union{Nothing, Int32}
-    ProjectList() = begin
-            new()
-        end
+    function ProjectList()
+        new()
+    end
 end
 mutable struct ProjectReference <: GCP.Abstract
     projectId::String
-    ProjectReference() = begin
-            new()
-        end
-end
-mutable struct QueryTimelineSample <: GCP.Abstract
-    activeUnits::Union{Nothing, Int64}
-    completedUnits::Union{Nothing, Int64}
-    elapsedMs::Union{Nothing, Int64}
-    pendingUnits::Union{Nothing, Int64}
-    totalSlotMs::Union{Nothing, Int64}
-    QueryTimelineSample() = begin
-            new()
-        end
-end
-mutable struct RangePartitioning <: GCP.Abstract
-    field::String
-    RangePartitioning() = begin
-            new()
-        end
-end
-mutable struct RoutineReference <: GCP.Abstract
-    datasetId::String
-    projectId::String
-    routineId::String
-    RoutineReference() = begin
-            new()
-        end
-end
-mutable struct Streamingbuffer <: GCP.Abstract
-    estimatedBytes::Union{Nothing, UInt64}
-    estimatedRows::Union{Nothing, UInt64}
-    oldestEntryTime::Union{Nothing, UInt64}
-    Streamingbuffer() = begin
-            new()
-        end
-end
-mutable struct TableCell <: GCP.Abstract
-    TableCell() = begin
-            new()
-        end
+    function ProjectReference()
+        new()
+    end
 end
 mutable struct TableDataInsertAllRequest <: GCP.Abstract
     ignoreUnknownValues::Union{Nothing, Bool}
     kind::String
     skipInvalidRows::Union{Nothing, Bool}
     templateSuffix::String
-    TableDataInsertAllRequest() = begin
-            new()
-        end
+    function TableDataInsertAllRequest()
+        new()
+    end
 end
 mutable struct TableDataInsertAllResponse <: GCP.Abstract
     kind::String
-    TableDataInsertAllResponse() = begin
-            new()
-        end
-end
-mutable struct TableReference <: GCP.Abstract
-    datasetId::String
-    projectId::String
-    tableId::String
-    TableReference() = begin
-            new()
-        end
-end
-mutable struct TimePartitioning <: GCP.Abstract
-    expirationMs::Union{Nothing, Int64}
-    field::String
-    requirePartitionFilter::Union{Nothing, Bool}
-    type_::String
-    TimePartitioning() = begin
-            new()
-        end
-end
-mutable struct UserDefinedFunctionResource <: GCP.Abstract
-    inlineCode::String
-    resourceUri::String
-    UserDefinedFunctionResource() = begin
-            new()
-        end
+    function TableDataInsertAllResponse()
+        new()
+    end
 end
 mutable struct DatasetReference <: GCP.Abstract
     datasetId::String
     projectId::String
-    DatasetReference() = begin
-            new()
-        end
+    function DatasetReference()
+        new()
+    end
 end
 mutable struct Dataset <: GCP.Abstract
     creationTime::Union{Nothing, Int64}
@@ -251,30 +70,30 @@ mutable struct Dataset <: GCP.Abstract
     lastModifiedTime::Union{Nothing, Int64}
     location::String
     selfLink::String
-    Dataset() = begin
-            new()
-        end
+    function Dataset()
+        new()
+    end
 end
 mutable struct DatasetList <: GCP.Abstract
     datasets::Vector{Dataset}
     etag::String
     kind::String
     nextPageToken::String
-    DatasetList() = begin
-            new()
-        end
+    function DatasetList()
+        new()
+    end
 end
 mutable struct Clustering <: GCP.Abstract
     fields::Vector{String}
-    Clustering() = begin
-            new()
-        end
+    function Clustering()
+        new()
+    end
 end
 mutable struct EncryptionConfiguration <: GCP.Abstract
     kmsKeyName::String
-    EncryptionConfiguration() = begin
-            new()
-        end
+    function EncryptionConfiguration()
+        new()
+    end
 end
 mutable struct BigtableColumn <: GCP.Abstract
     encoding::String
@@ -283,9 +102,9 @@ mutable struct BigtableColumn <: GCP.Abstract
     qualifierEncoded::Union{Nothing, UInt8}
     qualifierString::String
     type_::String
-    BigtableColumn() = begin
-            new()
-        end
+    function BigtableColumn()
+        new()
+    end
 end
 mutable struct BigtableColumnFamily <: GCP.Abstract
     columns::Vector{BigtableColumn}
@@ -293,17 +112,17 @@ mutable struct BigtableColumnFamily <: GCP.Abstract
     familyId::String
     onlyReadLatest::Union{Nothing, Bool}
     type_::String
-    BigtableColumnFamily() = begin
-            new()
-        end
+    function BigtableColumnFamily()
+        new()
+    end
 end
 mutable struct BigtableOptions <: GCP.Abstract
     columnFamilies::Vector{BigtableColumnFamily}
     ignoreUnspecifiedColumnFamilies::Union{Nothing, Bool}
     readRowkeyAsString::Union{Nothing, Bool}
-    BigtableOptions() = begin
-            new()
-        end
+    function BigtableOptions()
+        new()
+    end
 end
 mutable struct CsvOptions <: GCP.Abstract
     allowJaggedRows::Union{Nothing, Bool}
@@ -312,16 +131,16 @@ mutable struct CsvOptions <: GCP.Abstract
     fieldDelimiter::String
     quote_::String
     skipLeadingRows::Union{Nothing, Int64}
-    CsvOptions() = begin
-            new()
-        end
+    function CsvOptions()
+        new()
+    end
 end
 mutable struct GoogleSheetsOptions <: GCP.Abstract
     range::String
     skipLeadingRows::Union{Nothing, Int64}
-    GoogleSheetsOptions() = begin
-            new()
-        end
+    function GoogleSheetsOptions()
+        new()
+    end
 end
 mutable struct TableFieldSchema <: GCP.Abstract
     description::String
@@ -329,15 +148,15 @@ mutable struct TableFieldSchema <: GCP.Abstract
     mode::String
     name::String
     type_::String
-    TableFieldSchema() = begin
-            new()
-        end
+    function TableFieldSchema()
+        new()
+    end
 end
 mutable struct TableSchema <: GCP.Abstract
     fields::Vector{TableFieldSchema}
-    TableSchema() = begin
-            new()
-        end
+    function TableSchema()
+        new()
+    end
 end
 mutable struct ExternalDataConfiguration <: GCP.Abstract
     autodetect::Union{Nothing, Bool}
@@ -351,16 +170,16 @@ mutable struct ExternalDataConfiguration <: GCP.Abstract
     schema::TableSchema
     sourceFormat::String
     sourceUris::Vector{String}
-    ExternalDataConfiguration() = begin
-            new()
-        end
+    function ExternalDataConfiguration()
+        new()
+    end
 end
 mutable struct MaterializedViewDefinition <: GCP.Abstract
     lastRefreshTime::Union{Nothing, Int64}
     query::String
-    MaterializedViewDefinition() = begin
-            new()
-        end
+    function MaterializedViewDefinition()
+        new()
+    end
 end
 mutable struct BqmlIterationResult <: GCP.Abstract
     durationMs::Union{Nothing, Int64}
@@ -368,69 +187,69 @@ mutable struct BqmlIterationResult <: GCP.Abstract
     index::Union{Nothing, Int32}
     learnRate::Union{Nothing, Float64}
     trainingLoss::Union{Nothing, Float64}
-    BqmlIterationResult() = begin
-            new()
-        end
+    function BqmlIterationResult()
+        new()
+    end
 end
 mutable struct BqmlTrainingRun <: GCP.Abstract
     iterationResults::Vector{BqmlIterationResult}
     startTime::Dates.DateTime
     state::String
-    BqmlTrainingRun() = begin
-            new()
-        end
+    function BqmlTrainingRun()
+        new()
+    end
 end
 mutable struct ModelDefinition <: GCP.Abstract
     trainingRuns::Vector{BqmlTrainingRun}
-    ModelDefinition() = begin
-            new()
-        end
+    function ModelDefinition()
+        new()
+    end
 end
 mutable struct RangePartitioning <: GCP.Abstract
     field::String
-    RangePartitioning() = begin
-            new()
-        end
+    function RangePartitioning()
+        new()
+    end
 end
 mutable struct Streamingbuffer <: GCP.Abstract
     estimatedBytes::Union{Nothing, UInt64}
     estimatedRows::Union{Nothing, UInt64}
     oldestEntryTime::Union{Nothing, UInt64}
-    Streamingbuffer() = begin
-            new()
-        end
+    function Streamingbuffer()
+        new()
+    end
 end
 mutable struct TableReference <: GCP.Abstract
     datasetId::String
     projectId::String
     tableId::String
-    TableReference() = begin
-            new()
-        end
+    function TableReference()
+        new()
+    end
 end
 mutable struct TimePartitioning <: GCP.Abstract
     expirationMs::Union{Nothing, Int64}
     field::String
     requirePartitionFilter::Union{Nothing, Bool}
     type_::String
-    TimePartitioning() = begin
-            new()
-        end
+    function TimePartitioning()
+        new()
+    end
 end
 mutable struct UserDefinedFunctionResource <: GCP.Abstract
     inlineCode::String
     resourceUri::String
-    UserDefinedFunctionResource() = begin
-            new()
-        end
+    function UserDefinedFunctionResource()
+        new()
+    end
 end
 mutable struct ViewDefinition <: GCP.Abstract
     query::String
     useLegacySql::Union{Nothing, Bool}
     userDefinedFunctionResources::Vector{UserDefinedFunctionResource}
-    ViewDefinition() = begin
-            new()
-        end
+    function ViewDefinition()
+        new()
+    end
 end
 mutable struct Table <: GCP.Abstract
     clustering::Clustering
@@ -460,9 +279,9 @@ mutable struct Table <: GCP.Abstract
     timePartitioning::TimePartitioning
     type_::String
     view::ViewDefinition
-    Table() = begin
-            new()
-        end
+    function Table()
+        new()
+    end
 end
 mutable struct TableList <: GCP.Abstract
     etag::String
@@ -470,16 +289,16 @@ mutable struct TableList <: GCP.Abstract
     nextPageToken::String
     tables::Vector{Table}
     totalItems::Union{Nothing, Int32}
-    TableList() = begin
-            new()
-        end
+    function TableList()
+        new()
+    end
 end
 mutable struct JobStatistics4 <: GCP.Abstract
     destinationUriFileCounts::Vector{Int64}
     inputBytes::Union{Nothing, Int64}
-    JobStatistics4() = begin
-            new()
-        end
+    function JobStatistics4()
+        new()
+    end
 end
 mutable struct JobStatistics3 <: GCP.Abstract
     badRecords::Union{Nothing, Int64}
@@ -487,31 +306,31 @@ mutable struct JobStatistics3 <: GCP.Abstract
     inputFiles::Union{Nothing, Int64}
     outputBytes::Union{Nothing, Int64}
     outputRows::Union{Nothing, Int64}
-    JobStatistics3() = begin
-            new()
-        end
+    function JobStatistics3()
+        new()
+    end
 end
 mutable struct RoutineReference <: GCP.Abstract
     datasetId::String
     projectId::String
     routineId::String
-    RoutineReference() = begin
-            new()
-        end
+    function RoutineReference()
+        new()
+    end
 end
 mutable struct BigQueryModelTraining <: GCP.Abstract
     currentIteration::Union{Nothing, Int32}
     expectedTotalIterations::Union{Nothing, Int64}
-    BigQueryModelTraining() = begin
-            new()
-        end
+    function BigQueryModelTraining()
+        new()
+    end
 end
 mutable struct ExplainQueryStep <: GCP.Abstract
     kind::String
     substeps::Vector{String}
-    ExplainQueryStep() = begin
-            new()
-        end
+    function ExplainQueryStep()
+        new()
+    end
 end
 mutable struct ExplainQueryStage <: GCP.Abstract
     completedParallelInputs::Union{Nothing, Int64}
@@ -543,9 +362,9 @@ mutable struct ExplainQueryStage <: GCP.Abstract
     writeMsMax::Union{Nothing, Int64}
     writeRatioAvg::Union{Nothing, Float64}
     writeRatioMax::Union{Nothing, Float64}
-    ExplainQueryStage() = begin
-            new()
-        end
+    function ExplainQueryStage()
+        new()
+    end
 end
 mutable struct QueryTimelineSample <: GCP.Abstract
     activeUnits::Union{Nothing, Int64}
@@ -553,31 +372,31 @@ mutable struct QueryTimelineSample <: GCP.Abstract
     elapsedMs::Union{Nothing, Int64}
     pendingUnits::Union{Nothing, Int64}
     totalSlotMs::Union{Nothing, Int64}
-    QueryTimelineSample() = begin
-            new()
-        end
+    function QueryTimelineSample()
+        new()
+    end
 end
 mutable struct QueryParameterType <: GCP.Abstract
     arrayType::QueryParameterType
     type_::String
-    QueryParameterType() = begin
-            new()
-        end
+    function QueryParameterType()
+        new()
+    end
 end
 mutable struct QueryParameterValue <: GCP.Abstract
     arrayValues::Vector{QueryParameterValue}
     value::String
-    QueryParameterValue() = begin
-            new()
-        end
+    function QueryParameterValue()
+        new()
+    end
 end
 mutable struct QueryParameter <: GCP.Abstract
     name::String
     parameterType::QueryParameterType
     parameterValue::QueryParameterValue
-    QueryParameter() = begin
-            new()
-        end
+    function QueryParameter()
+        new()
+    end
 end
 mutable struct JobStatistics2 <: GCP.Abstract
     billingTier::Union{Nothing, Int32}
@@ -601,9 +420,9 @@ mutable struct JobStatistics2 <: GCP.Abstract
     totalPartitionsProcessed::Union{Nothing, Int64}
     totalSlotMs::Union{Nothing, Int64}
     undeclaredQueryParameters::Vector{QueryParameter}
-    JobStatistics2() = begin
-            new()
-        end
+    function JobStatistics2()
+        new()
+    end
 end
 mutable struct JobStatistics <: GCP.Abstract
     completionRatio::Union{Nothing, Float64}
@@ -618,37 +437,37 @@ mutable struct JobStatistics <: GCP.Abstract
     startTime::Union{Nothing, Int64}
     totalBytesProcessed::Union{Nothing, Int64}
     totalSlotMs::Union{Nothing, Int64}
-    JobStatistics() = begin
-            new()
-        end
+    function JobStatistics()
+        new()
+    end
 end
 mutable struct ErrorProto <: GCP.Abstract
     debugInfo::String
     location::String
     message::String
     reason::String
-    ErrorProto() = begin
-            new()
-        end
+    function ErrorProto()
+        new()
+    end
 end
 mutable struct JobReference <: GCP.Abstract
     jobId::String
     location::String
     projectId::String
-    JobReference() = begin
-            new()
-        end
+    function JobReference()
+        new()
+    end
 end
 mutable struct TableCell <: GCP.Abstract
-    TableCell() = begin
-            new()
-        end
+    function TableCell()
+        new()
+    end
 end
 mutable struct TableRow <: GCP.Abstract
     f::Vector{TableCell}
-    TableRow() = begin
-            new()
-        end
+    function TableRow()
+        new()
+    end
 end
 mutable struct QueryResponse <: GCP.Abstract
     cacheHit::Union{Nothing, Bool}
@@ -662,16 +481,16 @@ mutable struct QueryResponse <: GCP.Abstract
     schema::TableSchema
     totalBytesProcessed::Union{Nothing, Int64}
     totalRows::Union{Nothing, UInt64}
-    QueryResponse() = begin
-            new()
-        end
+    function QueryResponse()
+        new()
+    end
 end
 mutable struct DestinationTableProperties <: GCP.Abstract
     description::String
     friendlyName::String
-    DestinationTableProperties() = begin
-            new()
-        end
+    function DestinationTableProperties()
+        new()
+    end
 end
 mutable struct JobConfigurationLoad <: GCP.Abstract
     allowJaggedRows::Union{Nothing, Bool}
@@ -701,9 +520,9 @@ mutable struct JobConfigurationLoad <: GCP.Abstract
     timePartitioning::TimePartitioning
     useAvroLogicalTypes::Union{Nothing, Bool}
     writeDisposition::String
-    JobConfigurationLoad() = begin
-            new()
-        end
+    function JobConfigurationLoad()
+        new()
+    end
 end
 mutable struct JobConfigurationTableCopy <: GCP.Abstract
     createDisposition::String
@@ -712,9 +531,9 @@ mutable struct JobConfigurationTableCopy <: GCP.Abstract
     sourceTable::TableReference
     sourceTables::Vector{TableReference}
     writeDisposition::String
-    JobConfigurationTableCopy() = begin
-            new()
-        end
+    function JobConfigurationTableCopy()
+        new()
+    end
 end
 mutable struct JobConfigurationExtract <: GCP.Abstract
     compression::String
@@ -724,9 +543,9 @@ mutable struct JobConfigurationExtract <: GCP.Abstract
     fieldDelimiter::String
     printHeader::Union{Nothing, Bool}
     sourceTable::TableReference
-    JobConfigurationExtract() = begin
-            new()
-        end
+    function JobConfigurationExtract()
+        new()
+    end
 end
 mutable struct JobConfigurationQuery <: GCP.Abstract
     allowLargeResults::Union{Nothing, Bool}
@@ -750,9 +569,9 @@ mutable struct JobConfigurationQuery <: GCP.Abstract
     useQueryCache::Union{Nothing, Bool}
     userDefinedFunctionResources::Vector{UserDefinedFunctionResource}
     writeDisposition::String
-    JobConfigurationQuery() = begin
-            new()
-        end
+    function JobConfigurationQuery()
+        new()
+    end
 end
 mutable struct JobConfiguration <: GCP.Abstract
     copy::JobConfigurationTableCopy
@@ -762,17 +581,17 @@ mutable struct JobConfiguration <: GCP.Abstract
     jobType::String
     load::JobConfigurationLoad
     query::JobConfigurationQuery
-    JobConfiguration() = begin
-            new()
-        end
+    function JobConfiguration()
+        new()
+    end
 end
 mutable struct JobStatus <: GCP.Abstract
     errorResult::ErrorProto
     errors::Vector{ErrorProto}
     state::String
-    JobStatus() = begin
-            new()
-        end
+    function JobStatus()
+        new()
+    end
 end
 mutable struct Job <: GCP.Abstract
     configuration::JobConfiguration
@@ -784,9 +603,9 @@ mutable struct Job <: GCP.Abstract
     statistics::JobStatistics
     status::JobStatus
     user_email::String
-    Job() = begin
-            new()
-        end
+    function Job()
+        new()
+    end
 end
 mutable struct TableDataList <: GCP.Abstract
     etag::String
@@ -794,9 +613,9 @@ mutable struct TableDataList <: GCP.Abstract
     pageToken::String
     rows::Vector{TableRow}
     totalRows::Union{Nothing, Int64}
-    TableDataList() = begin
-            new()
-        end
+    function TableDataList()
+        new()
+    end
 end
 mutable struct GetQueryResultsResponse <: GCP.Abstract
     cacheHit::Union{Nothing, Bool}
@@ -811,9 +630,9 @@ mutable struct GetQueryResultsResponse <: GCP.Abstract
     schema::TableSchema
     totalBytesProcessed::Union{Nothing, Int64}
     totalRows::Union{Nothing, UInt64}
-    GetQueryResultsResponse() = begin
-            new()
-        end
+    function GetQueryResultsResponse()
+        new()
+    end
 end
 mutable struct QueryRequest <: GCP.Abstract
     defaultDataset::DatasetReference
@@ -828,25 +647,25 @@ mutable struct QueryRequest <: GCP.Abstract
     timeoutMs::Union{Nothing, UInt32}
     useLegacySql::Union{Nothing, Bool}
     useQueryCache::Union{Nothing, Bool}
-    QueryRequest() = begin
-            new()
-        end
+    function QueryRequest()
+        new()
+    end
 end
 mutable struct JobList <: GCP.Abstract
     etag::String
     jobs::Vector{Job}
     kind::String
     nextPageToken::String
-    JobList() = begin
-            new()
-        end
+    function JobList()
+        new()
+    end
 end
 mutable struct JobCancelResponse <: GCP.Abstract
     job::Job
     kind::String
-    JobCancelResponse() = begin
-            new()
-        end
+    function JobCancelResponse()
+        new()
+    end
 end
 function Base.convert(::Type{BigQueryModelTraining}, x::LazyJSON.Object{Nothing, String})
     if x == nothing
@@ -3045,7 +2864,7 @@ mutable struct Resource
                 res = HTTP.request("GET", "$(Bigquery.baseUrl)projects/$(project.id)/jobs/$(jobId)", headers; kws...)
                 convert(Bigquery.Job, LazyJSON.value(String(res.body)))
             end
-        r.getQueryResults = function getQueryResults(maxResults::UInt32, jobId::String; location = nothing, pageToken = nothing, startIndex = nothing, timeoutMs = nothing, kws...)
+        r.getQueryResults = function getQueryResults(jobId::String; location = nothing, maxResults = nothing, pageToken = nothing, startIndex = nothing, timeoutMs = nothing, kws...)
                 headers = project.authorize(; kws...)
                 res = HTTP.request("GET", "$(Bigquery.baseUrl)projects/$(project.id)/queries/$(jobId)", headers; kws...)
                 convert(Bigquery.GetQueryResultsResponse, LazyJSON.value(String(res.body)))
@@ -3056,7 +2875,7 @@ mutable struct Resource
                 res = HTTP.request("POST", "$(Bigquery.baseUrl)projects/$(project.id)/jobs", headers, GCP.json(body); kws...)
                 convert(Bigquery.Job, LazyJSON.value(String(res.body)))
             end
-        r.list = function list(allUsers::Bool, pageToken::String, stateFilter::String; maxCreationTime = nothing, maxResults = nothing, minCreationTime = nothing, projection = nothing, kws...)
+        r.list = function list(; allUsers = nothing, maxCreationTime = nothing, maxResults = nothing, minCreationTime = nothing, pageToken = nothing, projection = nothing, stateFilter = nothing, kws...)
                 headers = project.authorize(; kws...)
                 res = HTTP.request("GET", "$(Bigquery.baseUrl)projects/$(project.id)/jobs", headers; kws...)
                 convert(Bigquery.JobList, LazyJSON.value(String(res.body)))

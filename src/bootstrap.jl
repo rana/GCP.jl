@@ -630,7 +630,7 @@ module Emit
       optionalParameters = Vector{Parameter}()
       for parameter in method.parameters
         if parameter.name == "projectId" continue end # set by project.id
-        # @info resource.name, method.name, parameter.name, parameter.required
+        # @info "$(service.name).$(resource.name).$(method.name) $(parameter.name) required:$(parameter.required)"
         if parameter.required
           if isdefined(method, :parameterOrder)
             parameter.ord = indexof(method.parameterOrder, parameter.name)
@@ -641,8 +641,12 @@ module Emit
           push!(optionalParameters, parameter)
         end
       end
-      # @info "$(service.name).$(resource.name).$(method.name) requiredParameters: $(requiredParameters)"
-      # @info "$(service.name).$(resource.name).$(method.name) optionalParameters: $(optionalParameters)"
+      # for n in 1:length(requiredParameters)
+      #   @info "$(service.name).$(resource.name).$(method.name) requiredParameters-$n: $(requiredParameters[n].name) parameter.required:$(requiredParameters[n].required) isdefined(method, :parameterOrder):$(isdefined(method, :parameterOrder))"
+      # end
+      # for n in 1:length(optionalParameters)
+      #   @info "$(service.name).$(resource.name).$(method.name) optionalParameters-$n: $(optionalParameters[n].name) parameter.required:$(optionalParameters[n].required) isdefined(method, :parameterOrder):$(isdefined(method, :parameterOrder))"
+      # end
       # add required parameters to method
       for rp in sort!(requiredParameters)
         prmSym = typeSymbol(rp)
@@ -789,24 +793,32 @@ module Emit
         end
       end
       # --- Generate struct constructor (for mutable)
-      push!(schema.expr.args[3].args, unblock(@q $(Symbol(schema.name))() = new() ))
+      push!(schema.expr.args[3].args, unblock(@q function $(Symbol(schema.name))() new() end ))
     end
 
 
     # --- Add schema structs to module
-    # 0-ref structs first; maybe be referenced by other structs
-    for schema in sort(filter(v -> length(v.refs) == 0, collect(values(service.schemas))))
-      push!(service.expr.args[3].args, schema.expr)
-    end
+
      # n-ref structs last; sort by references
     # topological sort
     stack = Vector{Schema}()
     for schema in filter(v -> length(v.refs) != 0, collect(values(service.schemas)))
       # @info "try sort", schema.name
       topologicalSort(schema, stack)
+      # @info "===> sorting:$(schema.name) refs:$(length(schema.refs))"
     end
+
+    # 0-ref structs first; maybe be referenced by other structs
+    for schema in sort(filter(v -> length(v.refs) == 0, collect(values(service.schemas))))
+      if !in(schema, stack)
+        push!(service.expr.args[3].args, schema.expr)
+        # @info "===> 0refs:$(schema.name)"
+      end
+    end
+
     for schema in stack
       push!(service.expr.args[3].args, schema.expr)
+      # @info "===> stack:$(schema.name)"
     end
 
     # --- Generate convert methods for each struct. Variants include:
