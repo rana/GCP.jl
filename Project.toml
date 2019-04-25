@@ -1,7 +1,7 @@
 name = "GCP"
 uuid = "5a343a44-5b48-11e9-39be-f77f9e6fd977"
 authors = ["Rana Ian"]
-version = "0.1.0"
+version = "0.1.1"
 
 [compat]
 julia = "1.1"
