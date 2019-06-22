@@ -22,6 +22,8 @@ See tests for [more example calls](https://github.com/rana/GCP.jl/blob/master/te
 
 Auto-generated from [Google API Discovery Service](https://developers.google.com/discovery/).
 
+A 100% Julia implementation. Not reliant on command line installation of [Google Cloud SDK](https://cloud.google.com/sdk/gcloud/) or Python 2 (which Google Cloud SDK requires).
+
 [More APIs possible](https://github.com/rana/GCP.jl/blob/master/test/runbootstrap.jl) on (pull) request.
 
 Help is welcome.
