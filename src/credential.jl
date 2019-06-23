@@ -49,6 +49,17 @@ function Credential(data::AbstractDict{Symbol, <: AbstractString})
     end
     Credential((data[field] for field in fields)...)
 end
+function Credential(data::AbstractDict{Symbol, <: Any})
+    fields = fieldnames(Credential)
+    fields = [fields...,]
+    fields[findfirst(x->x==:account_type, fields)] = :type  # type is a keyword!
+    missing = setdiff(fields, keys(data))
+    if !isempty(missing)
+        @info missing
+        throw("Missing fields in key: ", join(missing, ", "))
+    end
+    Credential((data[field] for field in fields)...)
+end
 
 """
     Credential(filename)

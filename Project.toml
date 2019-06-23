@@ -1,10 +1,7 @@
 name = "GCP"
 uuid = "5a343a44-5b48-11e9-39be-f77f9e6fd977"
 authors = ["Rana Ian"]
-version = "0.1.1"
-
-[compat]
-julia = "1.1"
+version = "0.1.2"
 
 [deps]
 Base64 = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
@@ -15,6 +12,9 @@ JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
 LazyJSON = "fc18253b-5e1b-504c-a4a2-9ece4944c004"
 MacroTools = "1914dd2f-81c6-5fcd-8719-6d5c9610ff09"
 MbedTLS = "739be429-bea8-5141-9913-cc70e7f3736d"
+
+[compat]
+julia = "1.1"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
