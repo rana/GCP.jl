@@ -25,5 +25,3 @@ A 100% Julia implementation. Not reliant on command line installation of [Google
 Auto-generated from [Google API Discovery Service](https://developers.google.com/discovery/).
 
 [More APIs possible](https://github.com/rana/GCP.jl/blob/master/test/runbootstrap.jl) on (pull) request.
-
-Help is welcome.
